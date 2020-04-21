@@ -1,7 +1,11 @@
 %% SCRIPT to test/use the function prt_create_meegAtlas
 
-% get the basics sorted
-pth_root = 'C:\Dox\1_Code\PRoNTo_Hackathon2020';
+% get the root folder sorted
+pth_root = 'C:\Dox\1_Code\PRoNTo_MEEGatlas';
+% Check if SPM for M/EEG data is launched
+if ~exist('spm_create_labels','file')
+    spm('defaults','EEG') % otherwise initialize 
+end
 
 % define the input parameters for 1chan/2D case
 fn_data = fullfile(pth_root,'2Ddata','condition_Famous.nii');
@@ -14,7 +18,7 @@ labels_def.chans = {'chanXYZ'};
 labels_def.twind = cellstr(char('early','medium','late'));
 labels_def.fband =  cellstr(char('beta','alpha')) ; 
 dorder = 'ftc'; % order of axis in current data: frequency, time, channels
-fn_out = fullfile(pth_root,'test2D_MEEGatlas.nii');
+fn_out = fullfile(pth_root,'test2D_MEEGatlas_test.nii');
 % call to prt_create_meegAtlas
 [Vout,fn_labels] = prt_create_meegAtlas(Vin,fn_out,blocks_def,labels_def,dorder);
 
@@ -42,7 +46,7 @@ labels_def = struct( ...
 	'twind', {{'early';'medium';'late'}}, ...
     'fband', {{'beta';'alpha'}} ) ; 
 dorder = 'cft'; % order of axis in current data: channels, frequency, time 
-fn_out = fullfile(pth_root,'test3D_MEEGatlas.nii');
+fn_out = fullfile(pth_root,'test3D_MEEGatlas_test.nii');
 % call to prt_create_meegAtlas
 [Vout,fn_labels] = prt_create_meegAtlas(Vin,fn_out,blocks_def,labels_def,dorder);
 
