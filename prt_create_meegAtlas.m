@@ -169,7 +169,7 @@ for i_cg = 1:Ncg
 end
 
 % Reorder dims as in original data
-tmp = 1:3; ind_orig = tmp(ind_cft);
+[~,ind_orig] = sort(ind_cft);
 M_atlas = permute(M_atlas_cft,ind_orig);
 
 %% Wrap up & goodbye
