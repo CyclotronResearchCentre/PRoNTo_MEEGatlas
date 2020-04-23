@@ -11,9 +11,9 @@ With M/EEG data, there is *stricto sensu* no image but rather time series of sig
 
 ## Issues
 
-With M/EEG, there are thus 2 issues if one wants the MKL machinery developed for brain images: 1/ turning the M/EEG signal into images, and 2/ building a meaningful atlas.
+With M/EEG data, there are thus 2 issues if one wants to use the MKL machinery developed for brain images: 1/ turning the M/EEG signal into images, and 2/ building a meaningful atlas.
 
-1. SPM provides tools to process M/EEG data and turn them into images for further statistical analysis.  The `spm_eeg_convert2images.m` function does the job for a series of formats
+1. SPM provides tools to process M/EEG data and turn them into images for further statistical analysis.  The `spm_eeg_convert2images.m` function does the job for a series of options
 
   ````
 %   mode       - type of images to generate one of:
@@ -27,7 +27,7 @@ With M/EEG, there are thus 2 issues if one wants the MKL machinery developed for
 %                'average' (average over all dimensions to get a single
 %                           number)
   ````
-  but not all possibilities are available. Scalp projection (or interpolation) is convenient for scalp-by-time analysis, i.e. without frequency component, or scalp-by-frequency analysis, i.e. after averaging over time.  There is no option though if one is interested in channel-by-time-by-frequency analysis.
+  but not all possibilities are available. Scalp projection (or interpolation) is convenient for scalp-by-time analysis, i.e. without frequency component, or scalp-by-frequency analysis, i.e. after averaging over time.  There is no option though if one is interested in a channel-by-time-by-frequency analysis, i.e. without scalp interpolation and no averaging over time or frequency.
 
 2. If M/EEG data are written out as 3D images with dimensions `channels x time x frequency` then one should be able to specify an "atlas" that would be parcellating these 3D volumes into meaningful sets of channels, e.g. depending on their broad location over the scalp, time windows, e.g. early, medium, and late response, and/or or frequency bands, e.g. alpha, beta, and sigma bands.
 
